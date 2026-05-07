@@ -2,7 +2,7 @@
 const path = require('path');
 
 const nextConfig = {
-  distDir: path.join(require('os').homedir(), '.quantumedge-next'),
+  distDir: process.env.VERCEL ? '.next' : path.join(require('os').homedir(), '.quantumedge-next'),
   images: {
     remotePatterns: [{ protocol: 'https', hostname: '**' }],
   },
