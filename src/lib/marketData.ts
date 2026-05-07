@@ -202,7 +202,7 @@ export function generateSentiment(symbol: string): SentimentData {
 // ── SHAP explanations ─────────────────────────────────────────────────────────
 export function generateSHAP(indicators: TechnicalIndicators, prediction: EnsemblePrediction): SHAPExplanation[] {
   const dir = prediction.direction === 'UP' ? 1 : -1;
-  return [
+  return ([
     { feature: 'EMA 50 Cross', value: indicators.ema50, contribution: +(rand(0.08, 0.22) * dir).toFixed(3), description: 'Price-EMA50 relationship signals trend direction', category: 'TECHNICAL' },
     { feature: 'RSI (14)', value: indicators.rsi, contribution: +(rand(0.05, 0.18) * dir).toFixed(3), description: 'Momentum oscillator in neutral bullish zone', category: 'TECHNICAL' },
     { feature: 'MACD Histogram', value: indicators.macdHistogram, contribution: +(rand(0.04, 0.15) * dir).toFixed(3), description: 'Bullish momentum building in histogram', category: 'TECHNICAL' },
@@ -213,7 +213,7 @@ export function generateSHAP(indicators: TechnicalIndicators, prediction: Ensemb
     { feature: 'ADX Strength', value: indicators.adx, contribution: +(rand(0.02, 0.09) * dir).toFixed(3), description: 'Trend strength indicator confirms direction', category: 'TECHNICAL' },
     { feature: 'P/E Ratio', value: 28.4, contribution: +(rand(-0.05, 0.05)).toFixed(3), description: 'Fair valuation relative to sector peers', category: 'FUNDAMENTAL' },
     { feature: 'VIX Level', value: 18.5, contribution: +(rand(-0.06, 0.02)).toFixed(3), description: 'Low fear environment supports bulls', category: 'MACRO' },
-  ].sort((a, b) => Math.abs(b.contribution) - Math.abs(a.contribution));
+  ] as SHAPExplanation[]).sort((a, b) => Math.abs(b.contribution) - Math.abs(a.contribution));
 }
 
 // ── Market snapshots ──────────────────────────────────────────────────────────
